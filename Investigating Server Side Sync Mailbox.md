@@ -1,11 +1,21 @@
 # Server Side
 
+# Check Syncronisation Settings
+```
+function check($user){
+write-host $user -foregroundColor yellow
+#Get-CASMailbox -Identity $user
+#Get-Mailbox -Identity $user | Select-Object *Sync*, EmailAddressPolicyEnabled | ft
+Get-CASMailbox -Identity $user | Select-Object ActiveSyncEnabled, OWAforDevicesEnabled
+write-host "--------------------------"
+}
+```
 
-#Check EmailAddressPolicySync
+### Check EmailAddressPolicySync
 ```
 Get-Mailbox -Identity $user  | select EmailAddressPolicyEnabled
 ```
-## Fix Server Side Sync
+### Fix Server Side Sync
 ```
 Set-Mailbox -Identity user@yourdomain.com -EmailAddressPolicyEnabled $true
 ```
@@ -16,7 +26,7 @@ To enable server-side synchronization for the user, run this command:
 Set-Mailbox -Identity user@yourdomain.com -EmailAddressPolicyEnabled $true
 ```
 
-## Check if user has forwarding settings on mailbox
+# Check if user has forwarding settings on mailbox
 ```
 Get-Mailbox -Filter "ForwardingAddress -like '*'" | Select WindowsLiveID, *Forward*
 ```
@@ -24,10 +34,10 @@ Get-Mailbox -Filter "ForwardingAddress -like '*'" | Select WindowsLiveID, *Forwa
 
 
 
-## Other Commands
+# Other Commands
 
 
-## Retrieves Client Access Settings for specified mailbox.
+### Retrieves Client Access Settings for specified mailbox.
 ```
 Get-CASMailbox -Identity $user
 ```
@@ -39,11 +49,3 @@ Get-Mailbox -Identity $user | Select-Object *Sync* | ft
 ```
 Get-CASMailbox -Identity $user | Select-Object ActiveSyncEnabled, OWAforDevicesEnabled
 ```
-
-function check($user){
-write-host $user -foregroundColor yellow
-#Get-CASMailbox -Identity $user
-#Get-Mailbox -Identity $user | Select-Object *Sync* | ft
-Get-CASMailbox -Identity $user | Select-Object ActiveSyncEnabled, OWAforDevicesEnabled
-write-host "--------------------------"
-}
