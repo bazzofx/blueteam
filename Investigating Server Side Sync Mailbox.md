@@ -1,6 +1,6 @@
-# Server Side
+# Exchange Mail Syncronsation Settings
 
-# Check Syncronisation Settings
+## Check Syncronisation Settings
 ```
 function check($user){
 write-host $user -foregroundColor yellow
@@ -30,8 +30,6 @@ Set-Mailbox -Identity user@yourdomain.com -EmailAddressPolicyEnabled $true
 ```
 Get-Mailbox -Filter "ForwardingAddress -like '*'" | Select WindowsLiveID, *Forward*
 ```
-
-
 
 
 # Other Commands
